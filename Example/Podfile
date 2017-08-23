@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DMCSearch_Example' do
+  pod 'DMCSearch', :path => '../'
+
+  target 'DMCSearch_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
