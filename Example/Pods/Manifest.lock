@@ -1,0 +1,16 @@
+PODS:
+  - DMCSearch (0.1.0)
+
+DEPENDENCIES:
+  - DMCSearch (from `../`)
+
+EXTERNAL SOURCES:
+  DMCSearch:
+    :path: ../
+
+SPEC CHECKSUMS:
+  DMCSearch: 7b0cc2c6767aa7e312183d75b64a1300d5d47b5f
+
+PODFILE CHECKSUM: 086283afe6b565b620c1e3cc58b856f31ceb4969
+
+COCOAPODS: 1.2.1

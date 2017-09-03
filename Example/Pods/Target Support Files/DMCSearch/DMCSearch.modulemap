@@ -1,0 +1,6 @@
+framework module DMCSearch {
+  umbrella header "DMCSearch-umbrella.h"
+
+  export *
+  module * { export * }
+}
