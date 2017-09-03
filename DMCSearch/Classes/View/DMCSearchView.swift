@@ -43,11 +43,10 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         self.translatesAutoresizingMaskIntoConstraints = false;
         self.backgroundColor = UIColor.gray
         
-        // Status Bar
-        
         // Search Bar
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.searchBarStyle = .minimal
         searchBar.backgroundColor = UIColor.white
         addSubview(searchBar)
         

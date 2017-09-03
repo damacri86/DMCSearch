@@ -52,7 +52,7 @@ class DMCFilterBarButton: UIView {
                 let filterButton = DMCFilterButton()
                 filterButton.translatesAutoresizingMaskIntoConstraints = false
                 filterButton.setTitle(filter.name, for: .normal)
-                filterButton.widthAnchor.constraint(equalToConstant: 70.0).isActive = true
+                filterButton.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
                 filterButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
                 filterButton.tag = filter.id
                 filterButton.addTarget(self, action: #selector(didFilterButtonPressed(filterButton:)), for: UIControlEvents.touchUpInside)
