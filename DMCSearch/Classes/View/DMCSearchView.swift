@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol DMCSearchViewDataSource: class {
+@objc public protocol DMCSearchViewDataSource: class {
     
     func filters(in searchView: DMCSearchView) -> [DMCFilter]
     func searchObjects(in searchView: DMCSearchView) -> [DMCSearchObject]
