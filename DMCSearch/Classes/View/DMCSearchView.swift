@@ -18,6 +18,8 @@ import UIKit
     
     @objc optional func searchView(_ searchView: DMCSearchView, didSelectSearchObject searchObject: DMCSearchObject)
     @objc optional func searchView(_ searchView: DMCSearchView, didSelectFilter filter: DMCFilter)
+
+    @objc optional func searchView(_ searchView: DMCSearchView, textDidChange searchText: String)
     @objc optional func searchViewCancelButtonTapped(_ searchView: DMCSearchView)
 }
 
@@ -27,9 +29,12 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     public weak var datasource: DMCSearchViewDataSource?
     public weak var delegate: DMCSearchViewDelegate?
     
+    let tableView: UITableView
+    
     // MARK: Lifecycle
     override init(frame: CGRect) {
         
+        self.tableView = UITableView()
         super.init(frame: frame)
     }
     
@@ -62,13 +67,12 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         self.addSubview(filterBarButton)
         
         // Table View
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UIColor.white
-        tableView.register(DMCTableViewCell.self, forCellReuseIdentifier: "cellReuseIdentifier")
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.addSubview(tableView)
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.backgroundColor = UIColor.white
+        self.tableView.register(DMCTableViewCell.self, forCellReuseIdentifier: "cellReuseIdentifier")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.addSubview(self.tableView)
         
         // Constaints
         searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -81,10 +85,15 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         filterBarButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 1.0).isActive = true
         filterBarButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         
-        tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: filterBarButton.bottomAnchor, constant: 1.0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: filterBarButton.bottomAnchor, constant: 1.0).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    }
+    
+    public func updateContent() {
+        
+        self.tableView.reloadData()
     }
 
     // MARK: DMCFilterBarButtonDataSource
@@ -141,12 +150,9 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     }
     
     // MARK: UISearchBarDelegate
-    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-    }
-    
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        self.delegate?.searchView?(self, textDidChange: searchText)
     }
     
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
