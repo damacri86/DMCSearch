@@ -21,7 +21,7 @@ import UIKit
 }
 
 
-public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, DMCFilterBarButtonDataSource, DMCFilterBarButtonDelegate {
+public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, DMCFilterBarButtonDataSource, DMCFilterBarButtonDelegate {
 
     public weak var datasource: DMCSearchViewDataSource?
     public weak var delegate: DMCSearchViewDelegate?
@@ -41,10 +41,11 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         
         // Self
         self.translatesAutoresizingMaskIntoConstraints = false;
-        self.backgroundColor = UIColor.gray
+        self.backgroundColor = UIColor.init(red: 229.0/255.0, green: 230.0/255.0, blue: 233.0/255.0, alpha: 1.0)
         
         // Search Bar
         let searchBar = UISearchBar()
+        searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.searchBarStyle = .minimal
         searchBar.backgroundColor = UIColor.white
@@ -121,5 +122,22 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.delegate?.searchView!(self, didSelectSearchObject: (self.datasource?.searchObjects(in: self)[indexPath.row])!)
+    }
+    
+    // MARK: UISearchBarDelegate
+    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+    
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.text? = ""
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
     }
 }
