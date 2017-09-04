@@ -12,13 +12,15 @@ open class DMCSearchObject: NSObject {
 
     public let id: Int
     public let name: String
+    public let text: String?
     public let imageName: String
     
     // MARK: Lifecycle
-    public init(searchObjectId id:Int, searchObjectName name:String, searchObjectImageName imageName:String) {
+    public init(searchObjectId id:Int, searchObjectName name:String, searchObjectText text:String?, searchObjectImageName imageName:String) {
         
         self.id = id
         self.name = name
+        self.text = text
         self.imageName = imageName
         super.init()
     }
