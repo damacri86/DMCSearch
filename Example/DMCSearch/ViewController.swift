@@ -70,5 +70,10 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
         NSLog("Filter pressed with name %@", filter.name)
     }
     
+    func searchViewCancelButtonTapped(_ searchView: DMCSearchView) {
+        
+        NSLog("Search Cancel pressed")
+    }
+    
 }
 

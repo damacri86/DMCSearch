@@ -18,6 +18,7 @@ import UIKit
     
     @objc optional func searchView(_ searchView: DMCSearchView, didSelectSearchObject searchObject: DMCSearchObject)
     @objc optional func searchView(_ searchView: DMCSearchView, didSelectFilter filter: DMCFilter)
+    @objc optional func searchViewCancelButtonTapped(_ searchView: DMCSearchView)
 }
 
 
@@ -136,8 +137,6 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        searchBar.text? = ""
-        searchBar.setShowsCancelButton(false, animated: true)
-        searchBar.resignFirstResponder()
+        self.delegate?.searchViewCancelButtonTapped?(self)
     }
 }
