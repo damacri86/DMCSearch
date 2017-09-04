@@ -52,12 +52,33 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
     
     func searchObjects(in searchView: DMCSearchView) -> [DMCSearchObject] {
         
-        let searchObject1 = DMCSearchObject(searchObjectId: 1, searchObjectName: "Uno", searchObjectImageName: "casi")
-        let searchObject2 = DMCSearchObject(searchObjectId: 2, searchObjectName: "Dos", searchObjectImageName: "casi")
-        let searchObject3 = DMCSearchObject(searchObjectId: 3, searchObjectName: "Tres", searchObjectImageName: "casi")
-        let searchObject4 = DMCSearchObject(searchObjectId: 4, searchObjectName: "Cuatro", searchObjectImageName: "casi")
+        let searchObject1 = DMCSearchObject(searchObjectId: 1,
+                                            searchObjectName: "Uno",
+                                            searchObjectText: "Texto de test 1",
+                                            searchObjectImageName: "image1")
+
+        let searchObject2 = DMCSearchObject(searchObjectId: 1,
+                                            searchObjectName: "Dos",
+                                            searchObjectText: "Texto de test 2",
+                                            searchObjectImageName: "image2")
+
+        let searchObject3 = DMCSearchObject(searchObjectId: 3,
+                                            searchObjectName: "Tres",
+                                            searchObjectText: "Texto de test 3",
+                                            searchObjectImageName: "image3")
+
+        let searchObject4 = DMCSearchObject(searchObjectId: 4,
+                                            searchObjectName: "Cuatro",
+                                            searchObjectText: "Texto de test 4",
+                                            searchObjectImageName: "image4")
+
+        let searchObject5 = DMCSearchObject(searchObjectId: 5,
+                                            searchObjectName: "Cinco",
+                                            searchObjectText: "Texto de test 5",
+                                            searchObjectImageName: "image5")
+
         
-        return [searchObject1, searchObject2, searchObject3, searchObject4]
+        return [searchObject1, searchObject2, searchObject3, searchObject4, searchObject5]
     }
     
     func searchView(_ searchView: DMCSearchView, didSelectSearchObject searchObject: DMCSearchObject) {
@@ -76,4 +97,3 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
     }
     
 }
-
