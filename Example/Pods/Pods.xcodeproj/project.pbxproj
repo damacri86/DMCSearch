@@ -13,12 +13,11 @@
 		7821D3B2ABF214896CB5E29CC8C9A593 /* Pods-DMCSearch_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE95248FE210D7471F6C8FFC12C4D4EA /* Pods-DMCSearch_Example-dummy.m */; };
 		83F5034BB562440365E29E7EDEAB63C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		85F9309196DDDABBFFA5B7722DEC5BF5 /* DMCSearch-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ED2D15DE6C30285B370AC515E54A4FC4 /* DMCSearch-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C01F38561F4E10EB00928E64 /* DMCCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F38551F4E10EB00928E64 /* DMCCardView.swift */; };
-		C01F38581F4E132600928E64 /* DMCCardBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F38571F4E132600928E64 /* DMCCardBarView.swift */; };
 		C02258BF1F50687600475B33 /* DMCSearchObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02258BE1F50687600475B33 /* DMCSearchObject.swift */; };
 		C0BCA1C31F4F04C400CE752F /* DMCFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCA1C21F4F04C400CE752F /* DMCFilter.swift */; };
 		C0BCA1C41F4F5DEF00CE752F /* DMCFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCA1C01F4F044C00CE752F /* DMCFilterButton.swift */; };
 		C0BCA1C51F4F5DF200CE752F /* DMCFilterBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCA1BF1F4F044C00CE752F /* DMCFilterBarButton.swift */; };
+		C0FBD03A1F5DEFB700CF46E9 /* DMCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FBD0391F5DEFB700CF46E9 /* DMCTableViewCell.swift */; };
 		D34FCE05CAA888159B26774349DDB5E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		DC06D19D5297FEF3DEBC34EF798EA3D6 /* Pods-DMCSearch_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 409CC1ACA12158BBF4624D9CBD8E3FC1 /* Pods-DMCSearch_Tests-dummy.m */; };
 		EEE7F48F31421EDCD26254789EA5FCF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
@@ -56,12 +55,13 @@
 		B259973A910D6F15F164CB4B3D756CB6 /* DMCSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DMCSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB66303BDD7BFDE78785C78F1D703746 /* Pods-DMCSearch_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DMCSearch_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		BBDF12BA386D4D1D3C472366A0F01002 /* DMCSearch.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DMCSearch.modulemap; sourceTree = "<group>"; };
-		C01F38551F4E10EB00928E64 /* DMCCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCCardView.swift; sourceTree = "<group>"; };
-		C01F38571F4E132600928E64 /* DMCCardBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCCardBarView.swift; sourceTree = "<group>"; };
 		C02258BE1F50687600475B33 /* DMCSearchObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCSearchObject.swift; sourceTree = "<group>"; };
 		C0BCA1BF1F4F044C00CE752F /* DMCFilterBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMCFilterBarButton.swift; sourceTree = "<group>"; };
 		C0BCA1C01F4F044C00CE752F /* DMCFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMCFilterButton.swift; sourceTree = "<group>"; };
 		C0BCA1C21F4F04C400CE752F /* DMCFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCFilter.swift; sourceTree = "<group>"; };
+		C0FBD0371F5DEF2D00CF46E9 /* DMCCardBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMCCardBarView.swift; sourceTree = "<group>"; };
+		C0FBD0381F5DEF2D00CF46E9 /* DMCCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMCCardView.swift; sourceTree = "<group>"; };
+		C0FBD0391F5DEFB700CF46E9 /* DMCTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCTableViewCell.swift; sourceTree = "<group>"; };
 		C8F2852506CD6E4292545718CE5D4855 /* DMCSearchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DMCSearchView.swift; sourceTree = "<group>"; };
 		D5410E9FD830FD071802A93752979DCE /* Pods-DMCSearch_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DMCSearch_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		EC63ED340B2A9E1D6F9F2DACF441E1EB /* Pods_DMCSearch_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DMCSearch_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,10 +188,10 @@
 		B6F9E3006882D35F711803D986ECFBA8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C0FBD0361F5DEF2D00CF46E9 /* CardBar */,
 				C0BCA1BE1F4F044C00CE752F /* FilterBar */,
 				C8F2852506CD6E4292545718CE5D4855 /* DMCSearchView.swift */,
-				C01F38551F4E10EB00928E64 /* DMCCardView.swift */,
-				C01F38571F4E132600928E64 /* DMCCardBarView.swift */,
+				C0FBD0391F5DEFB700CF46E9 /* DMCTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +220,15 @@
 				C02258BE1F50687600475B33 /* DMCSearchObject.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C0FBD0361F5DEF2D00CF46E9 /* CardBar */ = {
+			isa = PBXGroup;
+			children = (
+				C0FBD0371F5DEF2D00CF46E9 /* DMCCardBarView.swift */,
+				C0FBD0381F5DEF2D00CF46E9 /* DMCCardView.swift */,
+			);
+			path = CardBar;
 			sourceTree = "<group>";
 		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
@@ -394,11 +403,10 @@
 			files = (
 				C0BCA1C31F4F04C400CE752F /* DMCFilter.swift in Sources */,
 				C02258BF1F50687600475B33 /* DMCSearchObject.swift in Sources */,
-				C01F38561F4E10EB00928E64 /* DMCCardView.swift in Sources */,
+				C0FBD03A1F5DEFB700CF46E9 /* DMCTableViewCell.swift in Sources */,
 				C0BCA1C51F4F5DF200CE752F /* DMCFilterBarButton.swift in Sources */,
 				C0BCA1C41F4F5DEF00CE752F /* DMCFilterButton.swift in Sources */,
 				2ACEA7062A918E94EBCFCACB0692E69E /* DMCSearchView.swift in Sources */,
-				C01F38581F4E132600928E64 /* DMCCardBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
