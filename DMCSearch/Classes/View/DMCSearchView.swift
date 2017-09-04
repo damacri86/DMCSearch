@@ -50,6 +50,7 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.searchBarStyle = .minimal
         searchBar.backgroundColor = UIColor.white
+        searchBar.setShowsCancelButton(true, animated: false)
         addSubview(searchBar)
         
         // Filter Bar
@@ -64,7 +65,7 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.white
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellReuseIdentifier")
+        tableView.register(DMCTableViewCell.self, forCellReuseIdentifier: "cellReuseIdentifier")
         tableView.delegate = self
         tableView.dataSource = self
         self.addSubview(tableView)
@@ -114,12 +115,26 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      
-        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier") as UITableViewCell!
-        cell.textLabel?.text = self.datasource?.searchObjects(in: self)[indexPath.row].name
+        let cell = DMCTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellReuseIdentifier")
+
+//        let cell:DMCTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier") as! DMCTableViewCell!
+        
+        if let searchObject = self.datasource?.searchObjects(in: self)[indexPath.row] {
+
+            cell.textLabel?.text = searchObject.name
+            cell.detailTextLabel?.text = searchObject.text
+            cell.imageView?.image = UIImage(named: searchObject.imageName)
+        }
+        
         return cell
     }
     
     // MARK: UITableViewDelegate
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 70.0
+    }
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.delegate?.searchView!(self, didSelectSearchObject: (self.datasource?.searchObjects(in: self)[indexPath.row])!)
@@ -128,7 +143,6 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     // MARK: UISearchBarDelegate
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        searchBar.setShowsCancelButton(true, animated: true)
     }
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
