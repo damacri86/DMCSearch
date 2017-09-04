@@ -14,16 +14,26 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let statusBarView = UIView()
+        statusBarView.translatesAutoresizingMaskIntoConstraints = false
+        statusBarView.backgroundColor = UIColor.white
+        self.view.addSubview(statusBarView)
+        
         let searchView = DMCSearchView()
         searchView.translatesAutoresizingMaskIntoConstraints = false
         searchView.delegate = self
         searchView.datasource = self
         searchView.customizeView()
         self.view.addSubview(searchView)
+
+        statusBarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        statusBarView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        statusBarView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        statusBarView.heightAnchor.constraint(equalToConstant: 22.0).isActive = true
         
         searchView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         searchView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        searchView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        searchView.topAnchor.constraint(equalTo: statusBarView.bottomAnchor).isActive = true
         searchView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
