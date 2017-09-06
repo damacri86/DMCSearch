@@ -32,9 +32,9 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     var filters: [DMCFilter] = []
     
     // MARK: Lifecycle
-    public convenience init(_ filters:[DMCFilter]) {
+    public convenience init(filters arrayfilters:[DMCFilter]) {
         self.init()
-        self.filters = filters
+        self.filters = arrayfilters
         self.tableView = UITableView()
     }
     
@@ -129,9 +129,9 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         
         if let searchObject = self.datasource?.searchObjects(in: self)[indexPath.row] {
 
-            cell.textLabel?.text = searchObject.name
-            cell.detailTextLabel?.text = searchObject.text
-            cell.imageView?.image = UIImage(named: searchObject.imageName)
+            cell.cellTitleLabel?.text = searchObject.name
+            cell.cellTextLabel?.text = searchObject.text
+            cell.cellImageView?.image = UIImage(named: searchObject.imageName)
         }
         
         return cell
@@ -140,7 +140,7 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     // MARK: UITableViewDelegate
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 70.0
+        return DMCTableViewCell.cellHeight()
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

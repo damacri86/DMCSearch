@@ -26,7 +26,7 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
         let filter5 = DMCFilter(filterId: 5, filterName: "Curiosidades")
         let filter6 = DMCFilter(filterId: 6, filterName: "Gaitas")
 
-        let searchView = DMCSearchView([filter1, filter2, filter3, filter4, filter5, filter6])
+        let searchView = DMCSearchView(filters:[filter1, filter2, filter3, filter4, filter5, filter6])
         searchView.translatesAutoresizingMaskIntoConstraints = false
         searchView.delegate = self
         searchView.datasource = self
