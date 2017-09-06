@@ -16,6 +16,7 @@ class DMCTableViewCell: UITableViewCell {
     
     let imageMargin: CGFloat = 10.0
     
+    // MARK: Lifecylce
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,7 +30,7 @@ class DMCTableViewCell: UITableViewCell {
     // Public
     static func cellHeight() -> CGFloat {
         
-        return 100.0
+        return 120.0
     }
     
     // Private
@@ -39,6 +40,7 @@ class DMCTableViewCell: UITableViewCell {
                                                        y: imageMargin,
                                                        width: DMCTableViewCell.cellHeight() - 2 * imageMargin,
                                                        height: DMCTableViewCell.cellHeight() - 2 * imageMargin))
+        self.cellImageView?.contentMode = .scaleAspectFill
         self.addSubview(self.cellImageView!)
         
         self.cellTitleLabel = UILabel(frame: CGRect(x: 5 + (self.cellImageView?.frame.size.width)! + 2 * imageMargin,
@@ -52,9 +54,27 @@ class DMCTableViewCell: UITableViewCell {
         self.cellTextLabel = UILabel(frame: CGRect(x: 5 + (self.cellImageView?.frame.size.width)! + 2 * imageMargin,
                                                    y: 20 + 20 + 5,
                                                    width: self.bounds.size.width - 2 * imageMargin - (self.cellImageView?.frame.size.width)! - 10,
-                                                   height: 20))
+                                                   height: 60))
         self.cellTextLabel?.font = UIFont.systemFont(ofSize: 13.0)
         self.cellTextLabel?.numberOfLines = 0
         self.addSubview(self.cellTextLabel!)
+    }
+    
+    override func layoutSubviews() {
+        
+        self.cellImageView?.frame = CGRect(x: imageMargin,
+                                           y: imageMargin,
+                                           width: DMCTableViewCell.cellHeight() - 2 * imageMargin,
+                                           height: DMCTableViewCell.cellHeight() - 2 * imageMargin)
+        
+        self.cellTitleLabel?.frame = CGRect(x: 5 + (self.cellImageView?.frame.size.width)! + 2 * imageMargin,
+                                            y: 20,
+                                            width: self.bounds.size.width - 2 * imageMargin - (self.cellImageView?.frame.size.width)! - 20,
+                                            height: 20)
+        
+        self.cellTextLabel?.frame = CGRect(x: 5 + (self.cellImageView?.frame.size.width)! + 2 * imageMargin,
+                                           y: 20 + 20 + 5,
+                                           width: self.bounds.size.width - 2 * imageMargin - (self.cellImageView?.frame.size.width)! - 20,
+                                           height: 60)
     }
 }
