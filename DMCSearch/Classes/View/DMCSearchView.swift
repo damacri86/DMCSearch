@@ -10,7 +10,6 @@ import UIKit
 
 @objc public protocol DMCSearchViewDataSource: class {
     
-    func filters(in searchView: DMCSearchView) -> [DMCFilter]
     func searchObjects(in searchView: DMCSearchView) -> [DMCSearchObject]
 }
 
@@ -24,14 +23,21 @@ import UIKit
 }
 
 
-public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, DMCFilterBarButtonDataSource, DMCFilterBarButtonDelegate {
+public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, DMCFilterBarButtonDelegate {
 
     public weak var datasource: DMCSearchViewDataSource?
     public weak var delegate: DMCSearchViewDelegate?
     
-    let tableView: UITableView
+    var tableView: UITableView
+    var filters: [DMCFilter] = []
     
     // MARK: Lifecycle
+    public convenience init(_ filters:[DMCFilter]) {
+        self.init()
+        self.filters = filters
+        self.tableView = UITableView()
+    }
+    
     override init(frame: CGRect) {
         
         self.tableView = UITableView()
@@ -59,10 +65,9 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         addSubview(searchBar)
         
         // Filter Bar
-        let filterBarButton = DMCFilterBarButton()
+        let filterBarButton = DMCFilterBarButton(self.filters)
         filterBarButton.translatesAutoresizingMaskIntoConstraints = false
         filterBarButton.delegate = self
-        filterBarButton.datasource = self
         filterBarButton.customizeView()
         self.addSubview(filterBarButton)
         
@@ -94,12 +99,6 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     public func updateContent() {
         
         self.tableView.reloadData()
-    }
-
-    // MARK: DMCFilterBarButtonDataSource
-    func filters(in fiterBarButton: DMCFilterBarButton) -> [DMCFilter]? {
-    
-        return self.datasource?.filters(in: self)
     }
 
     // MARK: DMCFilterBarButtonDelegate

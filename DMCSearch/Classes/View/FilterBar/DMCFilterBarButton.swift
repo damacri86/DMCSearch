@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol DMCFilterBarButtonDataSource: class {
-    
-    func filters(in fiterBarButton: DMCFilterBarButton) -> [DMCFilter]?
-}
-
 @objc protocol DMCFilterBarButtonDelegate: class {
     
     @objc optional func filterBarButton(_ filterBarButton: DMCFilterBarButton, didSelectFilter filter: DMCFilter)
@@ -20,19 +15,26 @@ protocol DMCFilterBarButtonDataSource: class {
 
 class DMCFilterBarButton: UIView {
     
-    weak var datasource: DMCFilterBarButtonDataSource?
     weak var delegate: DMCFilterBarButtonDelegate?
+    var filters: [DMCFilter]
+    var filterButtons: [DMCFilterButton] = []
     
     // MARK: Lifecycle
+    public convenience init(_ filters:[DMCFilter]) {
+        self.init()
+        self.filters = filters
+    }
+    
     override init(frame: CGRect) {
-        
+        self.filters = []
         super.init(frame: frame)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Private
     public func customizeView() {
         
         // Self
@@ -47,18 +49,17 @@ class DMCFilterBarButton: UIView {
         
         // Filter Buttons
         var filterButtons = [DMCFilterButton]()
-        if let filters = self.datasource?.filters(in: self) {
-            for filter in filters {
-                let filterButton = DMCFilterButton()
-                filterButton.translatesAutoresizingMaskIntoConstraints = false
-                filterButton.setTitle(filter.name, for: .normal)
-                filterButton.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
-                filterButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
-                filterButton.tag = filter.id
-                filterButton.addTarget(self, action: #selector(didFilterButtonPressed(filterButton:)), for: UIControlEvents.touchUpInside)
-                filterButtons.append(filterButton)
-            }
+        for filter in filters {
+            let filterButton = DMCFilterButton()
+            filterButton.translatesAutoresizingMaskIntoConstraints = false
+            filterButton.setTitle(filter.name, for: .normal)
+            filterButton.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+            filterButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+            filterButton.tag = filter.id
+            filterButton.addTarget(self, action: #selector(didFilterButtonPressed(filterButton:)), for: UIControlEvents.touchUpInside)
+            filterButtons.append(filterButton)
         }
+        self.filterButtons = filterButtons
         
         // StackView
         let stackView = UIStackView(arrangedSubviews: filterButtons)
@@ -83,8 +84,14 @@ class DMCFilterBarButton: UIView {
     
     func didFilterButtonPressed(filterButton button: DMCFilterButton) {
         
+        for filterButton in self.filterButtons {
+            if filterButton != button {
+                filterButton.isSelected = false
+            }
+        }
+        
         button.isSelected = !button.isSelected
-        if let filterSelected = self.datasource?.filters(in: self)?.first(where: {$0.id == button.tag}) {
+        if let filterSelected = self.filters.first(where: {$0.id == button.tag}) {
             self.delegate?.filterBarButton?(self, didSelectFilter: filterSelected)
         }
     }

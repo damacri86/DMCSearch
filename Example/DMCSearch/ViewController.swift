@@ -19,7 +19,14 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
         statusBarView.backgroundColor = UIColor.white
         self.view.addSubview(statusBarView)
         
-        let searchView = DMCSearchView()
+        let filter1 = DMCFilter(filterId: 1, filterName: "Monumentos")
+        let filter2 = DMCFilter(filterId: 2, filterName: "Parques")
+        let filter3 = DMCFilter(filterId: 3, filterName: "Iglesias")
+        let filter4 = DMCFilter(filterId: 4, filterName: "Playas")
+        let filter5 = DMCFilter(filterId: 5, filterName: "Curiosidades")
+        let filter6 = DMCFilter(filterId: 6, filterName: "Gaitas")
+
+        let searchView = DMCSearchView([filter1, filter2, filter3, filter4, filter5, filter6])
         searchView.translatesAutoresizingMaskIntoConstraints = false
         searchView.delegate = self
         searchView.datasource = self
@@ -35,19 +42,6 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
         searchView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         searchView.topAnchor.constraint(equalTo: statusBarView.bottomAnchor).isActive = true
         searchView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    }
-    
- 
-    func filters(in searchView: DMCSearchView) -> [DMCFilter] {
-
-        let filter1 = DMCFilter(filterId: 1, filterName: "Monumentos")
-        let filter2 = DMCFilter(filterId: 2, filterName: "Parques")
-        let filter3 = DMCFilter(filterId: 3, filterName: "Iglesias")
-        let filter4 = DMCFilter(filterId: 4, filterName: "Playas")
-        let filter5 = DMCFilter(filterId: 5, filterName: "Curiosidades")
-        let filter6 = DMCFilter(filterId: 6, filterName: "Gaitas")
-        
-        return [filter1, filter2, filter3, filter4, filter5, filter6]
     }
     
     func searchObjects(in searchView: DMCSearchView) -> [DMCSearchObject] {
