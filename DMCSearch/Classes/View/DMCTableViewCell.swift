@@ -41,6 +41,8 @@ class DMCTableViewCell: UITableViewCell {
                                                        width: DMCTableViewCell.cellHeight() - 2 * imageMargin,
                                                        height: DMCTableViewCell.cellHeight() - 2 * imageMargin))
         self.cellImageView?.contentMode = .scaleAspectFill
+        self.cellImageView?.clipsToBounds = true
+        self.cellImageView?.layer.cornerRadius = 10.0
         self.addSubview(self.cellImageView!)
         
         self.cellTitleLabel = UILabel(frame: CGRect(x: 5 + (self.cellImageView?.frame.size.width)! + 2 * imageMargin,
@@ -56,6 +58,7 @@ class DMCTableViewCell: UITableViewCell {
                                                    width: self.bounds.size.width - 2 * imageMargin - (self.cellImageView?.frame.size.width)! - 10,
                                                    height: 60))
         self.cellTextLabel?.font = UIFont.systemFont(ofSize: 13.0)
+        self.cellTextLabel?.textColor = UIColor(red: 153.0/255.0, green: 153.0/255.0, blue: 153.0/255.0, alpha: 1.0)
         self.cellTextLabel?.numberOfLines = 0
         self.addSubview(self.cellTextLabel!)
     }
