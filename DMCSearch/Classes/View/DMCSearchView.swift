@@ -23,24 +23,26 @@ import UIKit
 }
 
 
-public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, DMCFilterBarButtonDelegate {
+public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, DMCFilterBarButtonDelegate {
 
     public weak var datasource: DMCSearchViewDataSource?
     public weak var delegate: DMCSearchViewDelegate?
     
+    public var searchBar: UISearchBar
     var tableView: UITableView
     var filters: [DMCFilter] = []
     
     // MARK: Lifecycle
     public convenience init(filters arrayfilters:[DMCFilter]) {
+        
         self.init()
         self.filters = arrayfilters
-        self.tableView = UITableView()
     }
     
     override init(frame: CGRect) {
         
         self.tableView = UITableView()
+        self.searchBar = UISearchBar()
         super.init(frame: frame)
     }
     
@@ -56,19 +58,19 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         self.backgroundColor = UIColor.init(red: 229.0/255.0, green: 230.0/255.0, blue: 233.0/255.0, alpha: 1.0)
         
         // Search Bar
-        let searchBar = UISearchBar()
-        searchBar.delegate = self
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.searchBarStyle = .minimal
-        searchBar.backgroundColor = UIColor.white
-        self.addSubview(searchBar)
+        self.searchBar.delegate = self
+        self.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        self.searchBar.searchBarStyle = .minimal
+        self.searchBar.backgroundColor = UIColor.white
+        self.searchBar.placeholder = "Buscar en Oporto"
+        self.addSubview(self.searchBar)
         
         // Close Button
         let closeButton = UIButton()
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.backgroundColor = UIColor.white
         closeButton.addTarget(self, action:#selector(closeButtonPressed(_:)), for: .touchUpInside)
-        closeButton.setTitle("Close", for: .normal)
+        closeButton.setTitle("Cerrar", for: .normal)
         closeButton.setTitleColor(UIColor.black, for: .normal)
         self.addSubview(closeButton)
         
@@ -88,20 +90,20 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         self.addSubview(self.tableView)
         
         // Constaints
-        searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        searchBar.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor).isActive = true
-        searchBar.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        searchBar.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+        self.searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.searchBar.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor).isActive = true
+        self.searchBar.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.searchBar.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
         
-        closeButton.leadingAnchor.constraint(equalTo: searchBar.trailingAnchor).isActive = true
+        closeButton.leadingAnchor.constraint(equalTo: self.searchBar.trailingAnchor).isActive = true
         closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         closeButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 70.0).isActive = true
         
         filterBarButton.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         filterBarButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        filterBarButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 1.0).isActive = true
+        filterBarButton.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor, constant: 1.0).isActive = true
         filterBarButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         
         self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -173,5 +175,11 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.delegate?.searchView?(self, textDidChange: searchText)
+    }
+    
+    // MARK: UIScrollViewDelegate
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        self.searchBar.resignFirstResponder()
     }
 }
