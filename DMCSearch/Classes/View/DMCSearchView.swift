@@ -57,13 +57,19 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         self.translatesAutoresizingMaskIntoConstraints = false;
         self.backgroundColor = UIColor.init(red: 229.0/255.0, green: 230.0/255.0, blue: 233.0/255.0, alpha: 1.0)
         
+        // Container View
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = UIColor.white
+        self.addSubview(containerView)
+
         // Search Bar
         self.searchBar.delegate = self
         self.searchBar.translatesAutoresizingMaskIntoConstraints = false
         self.searchBar.searchBarStyle = .minimal
         self.searchBar.backgroundColor = UIColor.white
         self.searchBar.placeholder = "Buscar en Oporto"
-        self.addSubview(self.searchBar)
+        containerView.addSubview(self.searchBar)
         
         // Close Button
         let closeButton = UIButton()
@@ -71,8 +77,8 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         closeButton.backgroundColor = UIColor.white
         closeButton.addTarget(self, action:#selector(closeButtonPressed(_:)), for: .touchUpInside)
         closeButton.setTitle("Cerrar", for: .normal)
-        closeButton.setTitleColor(UIColor.black, for: .normal)
-        self.addSubview(closeButton)
+        closeButton.setTitleColor(UIColor.gray, for: .normal)
+        containerView.addSubview(closeButton)
         
         // Filter Bar
         let filterBarButton = DMCFilterBarButton(self.filters)
@@ -84,22 +90,28 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
         // Table View
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.backgroundColor = UIColor.white
+        self.tableView.separatorColor = UIColor.clear
         self.tableView.register(DMCTableViewCell.self, forCellReuseIdentifier: "cellReuseIdentifier")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.addSubview(self.tableView)
         
         // Constaints
-        self.searchBar.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        containerView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+        
+        self.searchBar.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         self.searchBar.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor).isActive = true
-        self.searchBar.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.searchBar.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+        self.searchBar.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        self.searchBar.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         
         closeButton.leadingAnchor.constraint(equalTo: self.searchBar.trailingAnchor).isActive = true
-        closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        closeButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        closeButton.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 70.0).isActive = true
+        closeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -5.0).isActive = true
+        closeButton.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        closeButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 60.0).isActive = true
         
         filterBarButton.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         filterBarButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
