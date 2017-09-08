@@ -139,6 +139,7 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     func filterBarButton(_ filterBarButton: DMCFilterBarButton, didSelectFilter filter: DMCFilter) {
         
         self.delegate?.searchView!(self, didSelectFilter: filter)
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
     
     // MARK: UITableViewDataSource
