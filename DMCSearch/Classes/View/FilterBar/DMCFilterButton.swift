@@ -44,7 +44,7 @@ class DMCFilterButton: UIButton {
         // Self
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.white
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         self.setTitleColor(UIColor.gray, for: .normal)
     
         // Selected view
