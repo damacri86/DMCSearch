@@ -31,6 +31,8 @@ class ViewController: UIViewController, DMCSearchViewDataSource, DMCSearchViewDe
         searchView.delegate = self
         searchView.datasource = self
         searchView.customizeView()
+        searchView.searchBar.placeholder = "Buscar en ejemplo"
+        searchView.closeButton.setTitle("Cerrar", for: .normal)
         self.view.addSubview(searchView)
 
         statusBarView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
