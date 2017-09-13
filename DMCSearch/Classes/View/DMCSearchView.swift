@@ -157,9 +157,7 @@ public class DMCSearchView: UIView, UITableViewDataSource, UITableViewDelegate, 
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      
-        let cell = DMCTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellReuseIdentifier")
-
-//        let cell:DMCTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier") as! DMCTableViewCell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier") as! DMCTableViewCell;
         
         if let searchObject = self.datasource?.searchObjects(in: self)[indexPath.row] {
 

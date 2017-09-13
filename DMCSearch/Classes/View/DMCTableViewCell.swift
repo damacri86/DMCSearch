@@ -27,6 +27,14 @@ class DMCTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Mark: Overridden
+    override func prepareForReuse() {
+        
+        cellImageView?.image = nil
+        cellTitleLabel?.text = ""
+        cellTextLabel?.text = ""
+    }
+    
     // Public
     static func cellHeight() -> CGFloat {
         
