@@ -82,7 +82,7 @@ class DMCFilterBarButton: UIView {
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
     
-    func didFilterButtonPressed(filterButton button: DMCFilterButton) {
+    @objc func didFilterButtonPressed(filterButton button: DMCFilterButton) {
         
         for filterButton in self.filterButtons {
             if filterButton != button {
